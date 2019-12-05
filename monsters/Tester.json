@@ -1,0 +1,22 @@
+{
+    "name": "Tester",
+    "monster_tpye": "Test_type",
+    "size": "universal",
+    "alignment": "true neutral",
+    "version": "1",
+    "sub_type": null,
+    "combat_stats": {
+        "armor_class": 0,
+        "armor_class_type": 0,
+        "passive_perception": 0,
+        "hit_die_count": 0,
+        "hit_die_value": 0,
+        "hit_points_average": 0,
+        "str_score": 20,
+        "dex_score": 20,
+        "con_score": 20,
+        "int_score": 20,
+        "wis_score": 20,
+        "cha_score": 20
+    }
+}
