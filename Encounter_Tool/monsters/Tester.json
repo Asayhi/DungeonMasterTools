@@ -1,6 +1,6 @@
 {
     "name": "Tester",
-    "monster_tpye": "Test_type",
+    "monster_type": "Test_type",
     "size": "universal",
     "alignment": "true neutral",
     "version": "1",

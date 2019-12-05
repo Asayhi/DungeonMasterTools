@@ -1,7 +1,8 @@
 import json
 from pathlib import Path
+import os
 
-cwd = Path.cwd()
+directory = os.path.dirname(os.path.realpath(__file__))
 data_folder = "monsters/"
 
 
@@ -10,21 +11,21 @@ class monster():
 
     def __init__(self):
         self.name = None
-        self.monster_tpye = None
+        self.monster_type = None
         self.size = None
         self.alignment = None
         self.version = None
         self.sub_type = None
+        self.combat_stats = combat_stats()
 
     def __str__(self):
         return str(self.__dict__)
 
-    def create_combat_stats(self):
-        self.combat_stats = combat_stats()
+        
 
     def set_misc(self, name, monster_type, size, alignment, version=None , subtype = None):
         self.name = name
-        self.monster_tpye = monster_type
+        self.monster_type = monster_type
         self.size = size
         self.alignment = alignment
         self.version = version
@@ -33,7 +34,7 @@ class monster():
         '''Methode that saves the monsters stats to a json-file'''
         Path(data_folder).mkdir(parents=True, exist_ok=True) 
         filename = self.name + ".json"
-        file_to_open = cwd / Path(data_folder + filename)
+        file_to_open = directory / Path(data_folder + filename)
         f = open(file_to_open, "w+")
         json.dump(self, f, indent=4, default=jdefault)
 
@@ -91,29 +92,30 @@ def jdefault(o):
 def create_monster_from_json(name):
     '''Methode that loads the stats for a monster from a json-file'''
     filename = name + ".json"
-    file_to_open = cwd / Path(data_folder + filename)
+    file_to_open = directory / Path(data_folder + filename)
     with open(file_to_open) as json_file:
         data = json.load(json_file)
         loaded_mob = monster()
-        loaded_mob.set_misc(data['name'], data['monster_type'], data['size'], data['alignment'], data['version'])
-        loaded_mob.combat_stats.set_combat_values(data['armor_class'], data['armor_class_type'], data['passive_perception'], data['hit_die_count'], data["hit_die_value"], data["hit_die_average"] )
-        loaded_mob.combat_stats.set_attribute_values(20,20,20,20,20,20)
+        loaded_mob.set_misc(data["name"], data["monster_type"], data["size"], data["alignment"], data["version"], data["sub_type"])
+        combat_data = data["combat_stats"]
+        loaded_mob.combat_stats.set_combat_values(  combat_data["armor_class"], combat_data["armor_class_type"], 
+                                                    combat_data["passive_perception"], combat_data["hit_die_count"], 
+                                                    combat_data["hit_die_value"], combat_data["hit_points_average"] )
+        loaded_mob.combat_stats.set_attribute_values(   combat_data["str_score"], combat_data["dex_score"],combat_data["con_score"],
+                                                        combat_data["int_score"],combat_data["wis_score"],combat_data["cha_score"])
+    return loaded_mob
 
 
 
 
 if __name__ == "__main__":
-    try:
-        test_monster = monster()
-        test_monster.create_combat_stats()
-        test_monster.set_misc("Tester", "Test_type", "universal", "true neutral", "1")
-        test_monster.combat_stats.set_combat_values(0,0,0,0,0,0)
-        test_monster.combat_stats.set_attribute_values(20,20,20,20,20,20)
-        print(test_monster)
-        print(test_monster.combat_stats)
-        test_monster.save_to_json()
-        #load_from_json("Tester")
 
-    except Exception as e:
-        print("Test Faild with Error:\n")
-        print(e)
+    test_monster = monster()
+    test_monster.set_misc("Tester", "Test_type", "universal", "true neutral", "1")
+    test_monster.combat_stats.set_combat_values(0,0,0,0,0,0)
+    test_monster.combat_stats.set_attribute_values(20,20,20,20,20,20)
+    print(test_monster)
+    print(test_monster.combat_stats)
+    test_monster.save_to_json()
+    mob = create_monster_from_json("Tester")
+
