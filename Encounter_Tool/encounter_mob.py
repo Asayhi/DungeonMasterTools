@@ -15,7 +15,6 @@ class monster():
         self.size = None
         self.alignment = None
         self.version = None
-        self.sub_type = None
         self.combat_stats = combat_stats()
 
     def __str__(self):

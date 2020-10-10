@@ -1,0 +1,17 @@
+Monster name*
+Monster type
+Size
+Alignment
+Version
+Armor class
+Armor type
+Passive Perception
+Hit die count
+Hit die value
+Hit points average
+Strength
+Dexterity
+Constitution
+Intelligence
+Wisdom
+Charisma
