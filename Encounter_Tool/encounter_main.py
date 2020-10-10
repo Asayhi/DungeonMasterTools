@@ -69,10 +69,10 @@ class Mob_builder_view(tk.Toplevel):
         clueLable.config(font=("Helvetica", 12))
         clueLable.pack()
 
-        self.save_mob_button = tk.Button(self, text="Build my Mob")
+        self.save_mob_button = tk.Button(self, text="Build my Mob", command= lambda: self.save_mob())
         self.save_mob_button.config(font=("Helvetica", 18))
         self.save_mob_button.pack()
-        self.save_mob_button.bind('<Button-1>', self.save_mob()) 
+
 
 
     def save_mob(self):
@@ -82,9 +82,9 @@ class Mob_builder_view(tk.Toplevel):
             ent.append(value)
 
         new_mob = ecMob.monster()
-        new_mob.set_misc(ent[0], ent[1], ent[2], ent[3], ent[4], ent[5])
-        new_mob.combat_stats.set_combat_values(int(ent[6]), int(ent[7]), int(ent[8]), int(ent[9]), int(ent[10]), int(ent[11]))
-        new_mob.combat_stats.set_attribute_values(int(ent[12]), int(ent[13]), int(ent[14]), int(ent[15]), int(ent[16]), int(ent[17]))
+        new_mob.set_misc(ent[0], ent[1], ent[2], ent[3], ent[4])
+        new_mob.combat_stats.set_combat_values(int(ent[5]), int(ent[6]), int(ent[7]), int(ent[8]), int(ent[9]), int(ent[10]))
+        new_mob.combat_stats.set_attribute_values(int(ent[11]), int(ent[12]), int(ent[13]), int(ent[14]), int(ent[15]), int(ent[16]))
         new_mob.save_to_json()
 
 

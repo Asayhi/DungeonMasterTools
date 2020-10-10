@@ -1,0 +1,21 @@
+{
+    "name": "Vampire",
+    "monster_type": "Undead",
+    "size": "medium",
+    "alignment": "NE",
+    "version": "1",
+    "combat_stats": {
+        "armor_class": 14,
+        "armor_class_type": 2,
+        "passive_perception": 16,
+        "hit_die_count": 3,
+        "hit_die_value": 8,
+        "hit_points_average": 18,
+        "str_score": 13,
+        "dex_score": 14,
+        "con_score": 16,
+        "int_score": 17,
+        "wis_score": 15,
+        "cha_score": 18
+    }
+}
