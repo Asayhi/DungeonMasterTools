@@ -22,7 +22,7 @@ class monster():
 
         
 
-    def set_misc(self, name, monster_type, size, alignment, version=None , subtype = None):
+    def set_misc(self, name, monster_type, size, alignment, version=None):
         self.name = name
         self.monster_type = monster_type
         self.size = size
@@ -95,7 +95,7 @@ def create_monster_from_json(name):
     with open(file_to_open) as json_file:
         data = json.load(json_file)
         loaded_mob = monster()
-        loaded_mob.set_misc(data["name"], data["monster_type"], data["size"], data["alignment"], data["version"], data["sub_type"])
+        loaded_mob.set_misc(data["name"], data["monster_type"], data["size"], data["alignment"], data["version"])
         combat_data = data["combat_stats"]
         loaded_mob.combat_stats.set_combat_values(  combat_data["armor_class"], combat_data["armor_class_type"], 
                                                     combat_data["passive_perception"], combat_data["hit_die_count"], 

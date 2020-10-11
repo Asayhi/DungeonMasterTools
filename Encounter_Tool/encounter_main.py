@@ -29,6 +29,10 @@ class Main_view():
         
 
 class Mob_builder_view(tk.Toplevel):
+    ''' 
+        This class is an amalgumation of stuff to display a fillable form to create a mob
+        hat is saved as a json file via button click
+    '''
     def __init__(self, master=None):
         tk.Toplevel.__init__(self, master)
         self.title("Mob Builder")
@@ -71,8 +75,11 @@ class Mob_builder_view(tk.Toplevel):
 
         self.save_mob_button = tk.Button(self, text="Build my Mob", command= lambda: self.save_mob())
         self.save_mob_button.config(font=("Helvetica", 18))
-        self.save_mob_button.pack()
+        self.save_mob_button.pack(side=tk.LEFT)
 
+        self.exit_builder_button = tk.Button(self, text="Exit", command= lambda: self.exit())
+        self.exit_builder_button.config(font=("Helvetica", 18))
+        self.exit_builder_button.pack(side=tk.RIGHT)
 
 
     def save_mob(self):
@@ -87,6 +94,9 @@ class Mob_builder_view(tk.Toplevel):
         new_mob.combat_stats.set_attribute_values(int(ent[11]), int(ent[12]), int(ent[13]), int(ent[14]), int(ent[15]), int(ent[16]))
         new_mob.save_to_json()
 
+    def exit(self):
+        self.destroy()
+        self.update()
 
         
 
