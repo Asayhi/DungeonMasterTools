@@ -69,9 +69,9 @@ class Mob_builder_view(tk.Toplevel):
             entries.append(ent)
 
         self.entries = entries
-        clueLable = tk.Label(self, text="* This entry is mandatory")
-        clueLable.config(font=("Helvetica", 12))
-        clueLable.pack()
+        self.clueLable = tk.Label(self, text="* This entry is mandatory")
+        self.clueLable.config(font=("Helvetica", 12))
+        self.clueLable.pack()
 
         self.save_mob_button = tk.Button(self, text="Build my Mob", command= lambda: self.save_mob())
         self.save_mob_button.config(font=("Helvetica", 18))
@@ -88,11 +88,15 @@ class Mob_builder_view(tk.Toplevel):
             value = entry.get()
             ent.append(value)
 
-        new_mob = ecMob.monster()
-        new_mob.set_misc(ent[0], ent[1], ent[2], ent[3], ent[4])
-        new_mob.combat_stats.set_combat_values(int(ent[5]), int(ent[6]), int(ent[7]), int(ent[8]), int(ent[9]), int(ent[10]))
-        new_mob.combat_stats.set_attribute_values(int(ent[11]), int(ent[12]), int(ent[13]), int(ent[14]), int(ent[15]), int(ent[16]))
-        new_mob.save_to_json()
+        if len(self.entries[0].get()) == 0:
+            self.clueLable.config(fg='red', text='Mandatory Parts missing!')
+
+        else:
+            new_mob = ecMob.monster()
+            new_mob.set_misc(ent[0], ent[1], ent[2], ent[3], ent[4])
+            new_mob.combat_stats.set_combat_values(int(ent[5]), int(ent[6]), int(ent[7]), int(ent[8]), int(ent[9]), int(ent[10]))
+            new_mob.combat_stats.set_attribute_values(int(ent[11]), int(ent[12]), int(ent[13]), int(ent[14]), int(ent[15]), int(ent[16]))
+            new_mob.save_to_json()
 
     def exit(self):
         self.destroy()
