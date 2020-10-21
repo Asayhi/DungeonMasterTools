@@ -39,13 +39,15 @@ class Mob_builder_view(tk.Toplevel):
         self.fields = []
         self.entries = []
         self.smallFont = ("Helvetica", 16)
+        self.bigFont = ("Helvetica", 24)
+        self.configPath = "Encounter_Tool/settings/monster_fields.txt"
         
         lable = tk.Label(self, text="This is the Mob Builder")
-        lable.config(font=("Helvetica", 24))
+        lable.config(font=self.bigFont)
         lable.pack()
 
         fields = []
-        filehandle = open("Encounter_Tool/settings/monster_fields.txt", 'r')
+        filehandle = open(self.configPath, 'r')
         filecontents = filehandle.readlines()
 
         for line in filecontents:
