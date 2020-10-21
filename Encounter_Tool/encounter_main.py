@@ -102,8 +102,9 @@ class Mob_builder_view(tk.Toplevel):
         self.destroy()
         self.update()
 
-        
 
-root = tk.Tk()
-menu = Main_view(root)
-root.mainloop()
+if __name__ == "__main__":
+    root = tk.Tk()
+    menu = Main_view(root)
+    root.mainloop()
+        
