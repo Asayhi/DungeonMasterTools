@@ -23,6 +23,16 @@ class monster():
         
 
     def set_misc(self, name, monster_type, size, alignment, version=None):
+        '''
+        Methode that allows the setting of misc data including:
+            monstername:    string
+            monstertype:    string
+            size:           string
+            alignment:      string
+            version:        string?
+
+        '''
+
         self.name = name
         self.monster_type = monster_type
         self.size = size
@@ -31,6 +41,7 @@ class monster():
     
     def save_to_json(self):
         '''Methode that saves the monsters stats to a json-file'''
+
         Path(data_folder).mkdir(parents=True, exist_ok=True) 
         filename = self.name + ".json"
         file_to_open = directory / Path(data_folder + filename)
@@ -60,8 +71,15 @@ class combat_stats:
 
     def set_combat_values(self, armor_class, armor_class_type, passive_perception, hit_die_count, hit_die_value, hit_points_average):
         '''
-            This Method sets values like armor and hit die.
-            You should only use integer values but who am I to judge if you want to mess with it
+        This Method sets values relevant to combat encounters like:
+            armor class:        int
+            armor calss type:   int
+            passive perception: int
+            hit die count:      int
+            hit die value:      int
+            hit points average: int
+
+        You should only use integer values but who am I to judge if you want to mess with it
         '''
         self.armor_class = armor_class
         self.armor_class_type = armor_class_type
@@ -72,8 +90,15 @@ class combat_stats:
 
     def set_attribute_values(self, strength, dexterity, constitution, intelligence, wisdom, charisma):
         '''
-            This Method sets values for attributes.
-            You should only use integer values but who am I to judge if you want to mess with it
+        This Method sets values for attributes.
+            strenght:       int
+            dexterity:      int
+            constitution:   int
+            intelligence:   int
+            wisdom:         int
+            charisma:       int
+
+        You should only use integer values but who am I to judge if you want to mess with it
         '''
         self.str_score = strength
         self.dex_score = dexterity
@@ -89,7 +114,13 @@ def jdefault(o):
     return o.__dict__
 
 def create_monster_from_json(name):
-    '''Methode that loads the stats for a monster from a json-file'''
+    '''
+    Methode that loads the stats for a monster from a json-file
+    This method creates a new monster object each time it is called
+
+    return: monster object
+    '''
+
     filename = name + ".json"
     file_to_open = directory / Path(data_folder + filename)
     with open(file_to_open) as json_file:
