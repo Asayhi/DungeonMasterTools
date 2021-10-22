@@ -1,37 +1,11 @@
 import tkinter as tk
 import json
-import encounter_mob as ecMob
-
-
-''' The mainclass of the encounter handler'''
-
-class Main_view():
-    ''' The class wich handles the view of the menu'''
-    def __init__(self, master):
-        self.master = master
-        master.title("Encounter Builder")
-
-        self.lable = tk.Label(master, text="Welcome to the Encounter Builder!")
-        self.lable.config(font=("Helvetica", 24))
-        self.lable.pack()
-
-        self.builder_button = tk.Button(master, text="Mob Builder")
-        self.builder_button.config(font=("Helvetica", 18))
-        self.builder_button.pack()
-        self.builder_button.bind('<Button-1>', self.open_builder)
-
-        self.quit_button = tk.Button(master, text="Quit", command=master.quit)
-        self.quit_button.config(font=("Helvetica", 18))
-        self.quit_button.pack()
-        
-    def open_builder(self, event):
-        win_builder = Mob_builder_view(root)
-        
-
+import Encounter_Tool.encounter_mob as ecMob
+     
 class Mob_builder_view(tk.Toplevel):
     ''' 
         This class is an amalgumation of stuff to display a fillable form to create a mob
-        hat is saved as a json file via button click
+        that is saved as a json file via button click
     '''
     def __init__(self, master=None):
         tk.Toplevel.__init__(self, master)
@@ -101,10 +75,4 @@ class Mob_builder_view(tk.Toplevel):
     def exit(self):
         self.destroy()
         self.update()
-
-
-if __name__ == "__main__":
-    root = tk.Tk()
-    menu = Main_view(root)
-    root.mainloop()
-        
+   
