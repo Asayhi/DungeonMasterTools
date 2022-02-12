@@ -1,29 +1,15 @@
 import tkinter as tk
-import json
 import queue
 import random
 import socket
 
+
+
 maxSavedDices = 10
-
-class die():
-
-    def __init__(self):
-        self.name = socket.getfqdn()
-        self.sides = None
-        self.value = None
-
-    def set_sides(self, newSides):
-        self.sides = newSides
-    
-    def roll(self):
-        self.value = random.randint(1, self.sides)
-
      
 class dice_view(tk.Toplevel):
     ''' 
-        This class is an amalgumation of stuff to display a fillable form to create a mob
-        that is saved as a json file via button click
+        This class is an amalgumation of stuff to display a list of rolled dice
     '''
     def __init__(self, master=None):
         tk.Toplevel.__init__(self, master)
@@ -91,10 +77,14 @@ class dice_view(tk.Toplevel):
     def exit(self):
         self.destroy()
         self.update()
-   
+
 
 if __name__ == "__main__":
+    from dice import die
     root = tk.Tk()
     menu = dice_view(root)
     root.mainloop()
+
+else: 
+    from dice.dice import die
      
