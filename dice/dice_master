@@ -1,0 +1,67 @@
+import tkinter as tk
+import queue
+import random
+import socket
+     
+class dice_master(tk.Toplevel):
+
+    def __init__(self, master=None):
+        tk.Toplevel.__init__(self, master)
+        self.title("Dice Master")
+        self.rolls = tk.Frame(self)
+        self.smallFont = ("Helvetica", 16)
+        
+        lable = tk.Label(self, text="Let's roll some die")
+        lable.config(font=("Helvetica", 24))
+        lable.pack()
+
+        for field in self.dice_queue.queue:
+            row = tk.Frame(self)
+            lab = tk.Label(row, width=20, text=field, anchor='w')
+            lab.config(font=self.smallFont)
+            row.pack(side=tk.TOP, fill=tk.X, padx=5, pady=5)
+            lab.pack(side=tk.LEFT)
+
+        self.roll_button = tk.Button(self, text="Roll Die", command= lambda: self.roll())
+        self.roll_button.config(font=("Helvetica", 18))
+        self.roll_button.pack(side=tk.LEFT)
+
+        self.exit_builder_button = tk.Button(self, text="Exit", command= lambda: self.exit())
+        self.exit_builder_button.config(font=("Helvetica", 18))
+        self.exit_builder_button.pack(side=tk.RIGHT)
+
+    def socket_initialize(self):
+        pass
+
+
+    def update_rolls(self):
+                
+        if not self.dice_queue.empty():
+            self.rolls.pack_forget()
+            self.rolls.destroy()
+
+        self.rolls = tk.Frame(self)
+
+        for rolled in self.dice_queue.queue:
+            row = tk.Frame(self.rolls)
+            lab = tk.Label(row, width=40, text="Value: "+str(rolled.value)+" Type: "+str(rolled.sides)+" Roller: "+str(rolled.name), anchor='w')
+            lab.config(font=self.smallFont)
+            row.pack(side=tk.TOP, fill=tk.X, padx=5, pady=5)
+            lab.pack(side=tk.LEFT)
+
+        self.rolls.pack(side=tk.TOP)
+
+
+    def exit(self):
+        self.destroy()
+        self.update()
+   
+if __name__ != "__main__":
+    from dice.dice import die
+
+if __name__ == "__main__":
+    from dice import die
+    root = tk.Tk()
+    menu = dice_master(root)
+    root.mainloop()
+     
