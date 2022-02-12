@@ -15,4 +15,11 @@ class die():
         self.sides = newSides
     
     def roll(self):
-        self.value = random.randint(1, self.sides)
+        try:
+            self.value = random.randint(1, self.sides)
+
+        except:
+            print("Someone did not set any sides for this dice")
+
+    def send(self):
+        pass
