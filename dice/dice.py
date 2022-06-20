@@ -12,14 +12,19 @@ class die():
         return str(self.__dict__)
 
     def set_sides(self, newSides):
-        self.sides = newSides
-    
+        try:
+            self.sides = newSides
+
+        except:
+            self.sides = None
+ 
     def roll(self):
         try:
             self.value = random.randint(1, self.sides)
 
         except:
             print("Someone did not set any sides for this dice")
+            pass
 
     def send(self):
         pass
