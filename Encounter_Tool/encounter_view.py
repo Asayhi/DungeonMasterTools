@@ -68,7 +68,7 @@ class Mob_builder_view(tk.Toplevel):
             self.clueLable.config(fg='red', text='Mandatory Parts missing!')
 
         else:
-            new_mob = ecMob.monster()
+            new_mob = ecMob.Monster()
             new_mob.set_misc(ent[0], ent[1], ent[2], ent[3], ent[4])
             new_mob.combat_stats.set_combat_values(int(ent[5]), int(ent[6]), int(ent[7]), int(ent[8]), int(ent[9]), int(ent[10]))
             new_mob.combat_stats.set_attribute_values(int(ent[11]), int(ent[12]), int(ent[13]), int(ent[14]), int(ent[15]), int(ent[16]))

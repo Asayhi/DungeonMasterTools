@@ -6,7 +6,7 @@ directory = os.path.dirname(os.path.realpath(__file__))
 data_folder = "monsters/"
 
 
-class monster():
+class Monster():
     '''The basic class for monsters, with misc data'''
 
     def __init__(self):
@@ -151,7 +151,7 @@ def create_monster_from_json(name):
     file_to_open = directory / Path(data_folder + filename)
     with open(file_to_open) as json_file:
         data = json.load(json_file)
-        loaded_mob = monster()
+        loaded_mob = Monster()
         loaded_mob.set_misc(data["name"], data["monster_type"], data["size"], data["alignment"], data["version"])
         combat_data = data["combat_stats"]
         loaded_mob.combat_stats.set_combat_values(  combat_data["armor_class"], combat_data["armor_class_type"], 
@@ -166,7 +166,7 @@ def create_monster_from_json(name):
 
 if __name__ == "__main__":
 
-    test_monster = monster()
+    test_monster = Monster()
     test_monster.set_misc("Tester", "Test_type", "universal", "true neutral", "1")
     test_monster.combat_stats.set_combat_values(0,0,0,0,0,0)
     test_monster.combat_stats.set_attribute_values(20,20,20,20,20,20)
