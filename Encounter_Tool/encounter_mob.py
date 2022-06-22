@@ -38,7 +38,29 @@ class monster():
         self.size = size
         self.alignment = alignment
         self.version = version
-    
+
+    def dictify(self): 
+        mob_dict = {
+            "name":                 self.name,
+            "type":                 self.monster_type,
+            "size":                 self.size,
+            "alignment":            self.alignment,
+            "version":              self.version,
+            "armor_class":          self.armor_class,
+            "armor_class_type":     self.armor_class_type,
+            "passive_perception":   self.passive_perception,
+            "hit_die_count":        self.hit_die_count,
+            "hit_die_value":        self.hit_die_value,
+            "hit_points_average":   self.hit_points_average,
+            "str_score":            self.str_score,
+            "dex_score":            self.dex_score,
+            "con_score":            self.con_score,
+            "int_score":            self.int_score,
+            "wis_score":            self.wis_score,
+            "cha_score":            self.cha_score,
+        }
+        return mob_dict
+
     def dumps(self):
         return json.dumps(self, indent=4, default=jdefault)
 
@@ -111,31 +133,6 @@ class combat_stats:
         self.int_score = intelligence
         self.wis_score = wisdom
         self.cha_score = charisma
-
-
-    def dictify(self): 
-        mob_dict = {
-            "name":                 self.name,
-            "type":                 self.monster_type,
-            "size":                 self.size,
-            "alignment":            self.alignment,
-            "version":              self.version,
-            "armor_class":          self.armor_class,
-            "armor_class_type":     self.armor_class_type,
-            "passive_perception":   self.passive_perception,
-            "hit_die_count":        self.hit_die_count,
-            "hit_die_value":        self.hit_die_value,
-            "hit_points_average":   self.hit_points_average,
-            "str_score":            self.str_score,
-            "dex_score":            self.dex_score,
-            "con_score":            self.con_score,
-            "int_score":            self.int_score,
-            "wis_score":            self.wis_score,
-            "cha_score":            self.cha_score,
-        }
-        return mob_dict
-
-        
 
 
 def jdefault(o):
