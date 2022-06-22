@@ -39,6 +39,9 @@ class monster():
         self.alignment = alignment
         self.version = version
     
+    def dumps(self):
+        return json.dumps(self, indent=4, default=jdefault)
+
     def save_to_json(self):
         '''Methode that saves the monsters stats to a json-file'''
 
@@ -46,7 +49,9 @@ class monster():
         filename = self.name + ".json"
         file_to_open = directory / Path(data_folder + filename)
         f = open(file_to_open, "w+")
-        json.dump(self, f, indent=4, default=jdefault)
+        dumped = self.dumps()
+        f.write(dumped)
+
 
 
 class combat_stats:
@@ -106,6 +111,30 @@ class combat_stats:
         self.int_score = intelligence
         self.wis_score = wisdom
         self.cha_score = charisma
+
+
+    def dictify(self): 
+        mob_dict = {
+            "name":                 self.name,
+            "type":                 self.monster_type,
+            "size":                 self.size,
+            "alignment":            self.alignment,
+            "version":              self.version,
+            "armor_class":          self.armor_class,
+            "armor_class_type":     self.armor_class_type,
+            "passive_perception":   self.passive_perception,
+            "hit_die_count":        self.hit_die_count,
+            "hit_die_value":        self.hit_die_value,
+            "hit_points_average":   self.hit_points_average,
+            "str_score":            self.str_score,
+            "dex_score":            self.dex_score,
+            "con_score":            self.con_score,
+            "int_score":            self.int_score,
+            "wis_score":            self.wis_score,
+            "cha_score":            self.cha_score,
+        }
+        return mob_dict
+
         
 
 
