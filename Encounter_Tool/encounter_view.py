@@ -1,6 +1,6 @@
 import tkinter as tk
-import json
 import Encounter_Tool.encounter_mob as ecMob
+import Encounter_Tool.mongo_mob_connector as connect
      
 class Mob_builder_view(tk.Toplevel):
     ''' 
@@ -73,6 +73,8 @@ class Mob_builder_view(tk.Toplevel):
             new_mob.combat_stats.set_combat_values(int(ent[5]), int(ent[6]), int(ent[7]), int(ent[8]), int(ent[9]), int(ent[10]))
             new_mob.combat_stats.set_attribute_values(int(ent[11]), int(ent[12]), int(ent[13]), int(ent[14]), int(ent[15]), int(ent[16]))
             new_mob.save_to_json()
+            connect.save_mob_to_db(new_mob)
+
 
     def exit(self):
         self.destroy()
