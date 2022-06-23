@@ -1,5 +1,6 @@
 import tkinter as tk
 import Encounter_Tool.encounter_view as enc
+from Encounter_Tool.mob_viewer import Mob_Viewer
 from dice.dice_view import dice_view
 
 ''' The mainclass of the encounter handler'''
@@ -18,6 +19,11 @@ class Main_view():
         self.builder_button.pack()
         self.builder_button.bind('<Button-1>', self.open_builder)
 
+        self.viewer_button = tk.Button(master, text="Mob Viewer")
+        self.viewer_button.config(font=("Helvetica", 18))
+        self.viewer_button.pack()
+        self.viewer_button.bind('<Button-1>', self.open_viewer)
+
         self.dice_button = tk.Button(master, text="Dice Roller")
         self.dice_button.config(font=("Helvetica", 18))
         self.dice_button.pack()
@@ -32,6 +38,9 @@ class Main_view():
 
     def open_roll(self, event):
         win_builder = dice_view(root)
+
+    def open_viewer(self, event):
+        win_builder = Mob_Viewer(root)
    
 if __name__ == "__main__":
     root = tk.Tk()
