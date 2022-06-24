@@ -1,7 +1,13 @@
+from ast import Mod
 from unittest import result
 from pymongo import MongoClient
 from pprint import pprint
-import encounter_mob as mob
+
+try:
+    import Encounter_Tool.encounter_mob as mob
+
+except ModuleNotFoundError:
+    import encounter_mob as mob
 
 def save_mob_to_db(monster: mob.Monster):
     client = MongoClient(port=27017)
@@ -23,8 +29,8 @@ def load_mob_from_db(name: str):
     loaded_mob = mob.Monster()
     loaded_mob.set_misc(data["name"], data["type"], data["size"], data["alignment"], data["version"])
 
-    loaded_mob.combat_stats.set_combat_values(  data["armor_class"], data["armor_class_type"], 
-                                                data["passive_perception"], data["hit_die_count"], 
+    loaded_mob.combat_stats.set_combat_values(  data["armor_class"], data["armor_class_type"],
+                                                data["passive_perception"], data["hit_die_count"],
                                                 data["hit_die_value"], data["hit_points_average"] )
     loaded_mob.combat_stats.set_attribute_values(   data["str_score"], data["dex_score"], data["con_score"],
                                                     data["int_score"], data["wis_score"], data["cha_score"])
